@@ -106,73 +106,67 @@ CREATE TABLE Progress (
 );
 
 
-INSERT INTO Instructor VALUES (1,'Juhi'),(2,'Alice'),(3,'Nayan');
+INSERT INTO Instructor VALUES 
+(1,'John'),(2,'Alice'),(3,'David'),(4,'Emma'),(5,'Chris');
 
 INSERT INTO Student VALUES 
 (1,'Sam','sam@gmail.com',CURRENT_TIMESTAMP),
 (2,'Riya','riya@gmail.com',CURRENT_TIMESTAMP),
 (3,'Arjun','arjun@gmail.com',CURRENT_TIMESTAMP),
 (4,'Neha','neha@gmail.com',CURRENT_TIMESTAMP),
-(5,'Rahul','rahul@gmail.com',CURRENT_TIMESTAMP);
-
+(5,'Rahul','rahul@gmail.com',CURRENT_TIMESTAMP),
+(6,'Anu','anu@gmail.com',CURRENT_TIMESTAMP),
+(7,'Kiran','kiran@gmail.com',CURRENT_TIMESTAMP),
+(8,'Pooja','pooja@gmail.com',CURRENT_TIMESTAMP),
+(9,'Raj','raj@gmail.com',CURRENT_TIMESTAMP),
+(10,'Sneha','sneha@gmail.com',CURRENT_TIMESTAMP);
 
 INSERT INTO Course VALUES 
 (1,'DBMS',1,CURRENT_TIMESTAMP),
 (2,'Java',2,CURRENT_TIMESTAMP),
-(3,'Python',3,CURRENT_TIMESTAMP);
-
+(3,'Python',3,CURRENT_TIMESTAMP),
+(4,'C++',4,CURRENT_TIMESTAMP),
+(5,'AI',5,CURRENT_TIMESTAMP);
 
 INSERT INTO Module VALUES 
-(1,1,'Basics'),
-(2,1,'Advanced'),
-(3,2,'OOP'),
-(4,3,'Intro');
-
+(1,1,'Basics'),(2,1,'Advanced'),
+(3,2,'OOP'),(4,3,'Intro'),
+(5,4,'Concepts'),(6,5,'ML');
 
 INSERT INTO Lesson VALUES 
-(1,1,'Intro DB'),
-(2,1,'ER Model'),
-(3,2,'Normalization'),
-(4,3,'Classes'),
-(5,4,'Syntax');
-
+(1,1,'Intro DB'),(2,1,'ER Model'),
+(3,2,'Normalization'),(4,3,'Classes'),
+(5,4,'Syntax'),(6,5,'Pointers');
 
 INSERT INTO Enrollment VALUES 
-(1,1,CURRENT_DATE),
-(2,1,CURRENT_DATE),
-(3,2,CURRENT_DATE),
-(4,3,CURRENT_DATE),
-(5,2,CURRENT_DATE);
-
+(1,1,CURRENT_DATE),(2,1,CURRENT_DATE),
+(3,2,CURRENT_DATE),(4,3,CURRENT_DATE),
+(5,2,CURRENT_DATE),(6,4,CURRENT_DATE),
+(7,5,CURRENT_DATE),(8,3,CURRENT_DATE),
+(9,1,CURRENT_DATE),(10,2,CURRENT_DATE);
 
 INSERT INTO Review VALUES 
 (1,1,1,5,'Good',CURRENT_TIMESTAMP),
 (2,2,1,4,'Nice',CURRENT_TIMESTAMP),
-(3,3,2,5,'Excellent',CURRENT_TIMESTAMP);
-
+(3,3,2,5,'Excellent',CURRENT_TIMESTAMP),
+(4,4,3,3,'Average',CURRENT_TIMESTAMP);
 
 INSERT INTO Progress VALUES 
-(1,1,'Completed'),
-(1,2,'Completed'),
-(2,1,'In Progress'),
-(3,3,'Completed');
-
+(1,1,'Completed'),(1,2,'Completed'),
+(2,1,'In Progress'),(3,3,'Completed'),
+(4,4,'Completed'),(5,5,'In Progress');
 
 INSERT INTO Tag VALUES 
-(1,'Tech'),
-(2,'Programming');
-
+(1,'Tech'),(2,'Programming'),(3,'AI');
 
 INSERT INTO Course_Tag VALUES 
-(1,1),
-(2,2),
-(3,2);
+(1,1),(2,2),(3,2),(5,3);
 
 INSERT INTO Student_Phone VALUES 
 (1,1,'9999999999'),
 (2,1,'8888888888'),
-(3,2,'7777777777');
-
+(3,2,'7777777777'),
+(4,3,'6666666666');
 
 SELECT * FROM Student;
 
@@ -193,3 +187,12 @@ JOIN Course ON Enrollment.course_id = Course.course_id;
 SELECT Course.title, Instructor.name
 FROM Course
 JOIN Instructor ON Course.instructor_id = Instructor.instructor_id;
+
+SELECT Student.name, Review.rating
+FROM Review
+JOIN Student ON Review.student_id = Student.student_id;
+
+SELECT Course.title, Tag.tag_name
+FROM Course_Tag
+JOIN Course ON Course_Tag.course_id = Course.course_id
+JOIN Tag ON Course_Tag.tag_id = Tag.tag_id;
