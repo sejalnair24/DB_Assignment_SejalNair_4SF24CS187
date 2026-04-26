@@ -71,40 +71,46 @@ CREATE TABLE Order_Item (
 INSERT INTO Customer VALUES 
 (1,'Aman','aman@gmail.com'),
 (2,'Priya','priya@gmail.com'),
-(3,'Kiran','kiran@gmail.com');
-
+(3,'Kiran','kiran@gmail.com'),
+(4,'Rohit','rohit@gmail.com'),
+(5,'Meena','meena@gmail.com'),
+(6,'Vikas','vikas@gmail.com'),
+(7,'Sita','sita@gmail.com'),
+(8,'Raj','raj@gmail.com'),
+(9,'Anil','anil@gmail.com'),
+(10,'Deepa','deepa@gmail.com');
 
 INSERT INTO Category VALUES 
-(1,'Electronics'),
-(2,'Clothing');
-
+(1,'Electronics'),(2,'Clothing');
 
 INSERT INTO Product VALUES 
 (1,'Laptop',1,50000),
 (2,'Phone',1,20000),
-(3,'Shirt',2,1000);
+(3,'Shirt',2,1000),
+(4,'TV',1,40000),
+(5,'Jeans',2,2000);
 
 INSERT INTO Coupon VALUES 
-(1,10),
-(2,20);
-
+(1,10),(2,20);
 
 INSERT INTO Orders VALUES 
 (1,1,1,'2025-01-01','Delivered'),
 (2,2,2,'2025-01-02','Pending'),
-(3,3,NULL,'2025-01-03','Shipped');
+(3,3,NULL,'2025-01-03','Shipped'),
+(4,4,1,'2025-01-04','Delivered');
 
 INSERT INTO Order_Item VALUES 
 (1,1,1,50000),
 (1,2,2,20000),
-(2,3,1,1000);
-
+(2,3,1,1000),
+(3,2,1,20000),
+(4,5,2,2000);
 
 INSERT INTO Payment VALUES 
 (1,1,'UPI',50000),
 (2,2,'Card',1000),
-(3,3,'Cash',20000);
-
+(3,3,'Cash',20000),
+(4,4,'UPI',4000);
 SELECT * FROM Payment;
 
 
@@ -124,3 +130,13 @@ JOIN Category ON Product.category_id = Category.category_id;
 SELECT Orders.order_id, Payment.amount
 FROM Payment
 JOIN Orders ON Payment.order_id = Orders.order_id;
+
+SELECT Customer.name, Orders.order_id
+FROM Orders
+JOIN Customer ON Orders.customer_id = Customer.customer_id;
+
+
+SELECT Orders.order_id, Product.name
+FROM Order_Item
+JOIN Orders ON Order_Item.order_id = Orders.order_id
+JOIN Product ON Order_Item.product_id = Product.product_id;
